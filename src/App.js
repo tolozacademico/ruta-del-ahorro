@@ -7,7 +7,7 @@ import AuthModal from './components/AuthModal';
 import UserMenu from './components/UserMenu';
 import './styles/App.css';
 import './styles/MapView.css';
-
+//hola
 function App() {
   const [products, setProducts] = useState(['Producto 1', 'Producto 2']);
   const [newProduct, setNewProduct] = useState('');
