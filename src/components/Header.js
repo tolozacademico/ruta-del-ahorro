@@ -1,20 +1,30 @@
-import React from "react";
+// components/Header.js
+import React from 'react';
 
-const Header = () => {
+const Header = ({ user, onLoginClick, userMenuComponent }) => {
     return (
-    <header className="header">
+        <header className="header">
         <div className="header-content">
-        <div className="logo-section">
-            <div className="logo-container">
-            <img src={require("../assets/images/favicon.ico")}  alt="Logo" className="logo" />
+            <div className="logo-section">
+                <div className="logo-container">
+                    <img src={require("../assets/images/favicon.ico")}  alt="Logo" className="logo" />
+                </div>
+                <div className="location-info">
+                    <span className="location-text">Ruta Del Ahorro</span>
+                </div>
             </div>
-            <div className="location-info">
-            <span className="location-text">Ruta Del Ahorro</span>
+            
+            <div className="auth-section">
+            {user ? (
+                userMenuComponent
+            ) : (
+                <button onClick={onLoginClick} className="login-button">
+                INICIA SESIÓN
+                </button>
+            )}
             </div>
         </div>
-        <button className="login-button">INICIA SESIÓN</button>
-        </div>
-    </header>
+        </header>
     );
 };
 

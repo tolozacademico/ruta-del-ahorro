@@ -1,0 +1,260 @@
+/* Auth Modal Styles */
+.auth-modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+.auth-modal {
+background: white;
+border-radius: 12px;
+width: 90%;
+max-width: 420px;
+max-height: 90vh;
+overflow-y: auto;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+from {
+    opacity: 0;
+    transform: translateY(30px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+.auth-modal-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 24px;
+border-bottom: 1px solid #e5e5e5;
+background: linear-gradient(135deg, #ff6b35, #f7931e);
+color: white;
+border-radius: 12px 12px 0 0;
+}
+
+.auth-modal-header h2 {
+margin: 0;
+font-size: 24px;
+font-weight: 600;
+}
+
+.close-button {
+background: rgba(255, 255, 255, 0.2);
+border: none;
+font-size: 24px;
+cursor: pointer;
+color: white;
+width: 32px;
+height: 32px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+transition: background-color 0.2s;
+}
+
+.close-button:hover {
+background: rgba(255, 255, 255, 0.3);
+}
+
+.auth-modal-body {
+padding: 24px;
+}
+
+.oauth-section {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-bottom: 24px;
+}
+
+.oauth-button {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+padding: 12px 16px;
+border: 2px solid #e5e5e5;
+border-radius: 8px;
+background: white;
+cursor: pointer;
+font-size: 15px;
+font-weight: 500;
+transition: all 0.2s ease;
+position: relative;
+overflow: hidden;
+}
+
+.oauth-button:hover {
+transform: translateY(-1px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.google-oauth {
+border-color: #dadce0;
+}
+
+.google-oauth:hover {
+border-color: #4285f4;
+background: #f8f9ff;
+}
+
+.facebook-oauth {
+border-color: #dadce0;
+}
+
+.facebook-oauth:hover {
+border-color: #1877f2;
+background: #f0f2ff;
+}
+
+.oauth-icon {
+width: 20px;
+height: 20px;
+border-radius: 3px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+font-size: 14px;
+color: white;
+}
+
+.google-icon {
+background: #4285f4;
+}
+
+.facebook-icon {
+background: #1877f2;
+}
+
+.divider {
+text-align: center;
+margin: 24px 0;
+position: relative;
+}
+
+.divider::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 0;
+right: 0;
+height: 1px;
+background: #e5e5e5;
+}
+
+.divider span {
+background: white;
+padding: 0 16px;
+color: #6b7280;
+font-size: 14px;
+font-weight: 500;
+}
+
+.auth-form {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.auth-input {
+padding: 12px 16px;
+border: 2px solid #e5e5e5;
+border-radius: 8px;
+font-size: 16px;
+transition: all 0.2s ease;
+background: #fafafa;
+}
+
+.auth-input:focus {
+outline: none;
+border-color: #ff6b35;
+background: white;
+box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.auth-input::placeholder {
+color: #9ca3af;
+}
+
+.auth-submit-button {
+background: linear-gradient(135deg, #ff6b35, #f7931e);
+color: white;
+border: none;
+padding: 14px 16px;
+border-radius: 8px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s ease;
+margin-top: 8px;
+}
+
+.auth-submit-button:hover {
+background: linear-gradient(135deg, #e55a2e, #e8851b);
+transform: translateY(-1px);
+box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.auth-submit-button:active {
+transform: translateY(0);
+}
+
+.auth-switch {
+text-align: center;
+margin-top: 24px;
+}
+
+.auth-switch p {
+margin: 0;
+color: #6b7280;
+font-size: 14px;
+}
+
+.switch-mode-button {
+background: none;
+border: none;
+color: #ff6b35;
+font-weight: 600;
+cursor: pointer;
+margin-left: 6px;
+text-decoration: none;
+transition: color 0.2s ease;
+}
+
+.switch-mode-button:hover {
+color: #e55a2e;
+text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+.auth-modal {
+    width: 95%;
+    margin: 10px;
+}
+
+.auth-modal-body {
+    padding: 20px;
+}
+}
