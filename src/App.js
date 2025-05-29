@@ -7,13 +7,27 @@ import AuthModal from './components/AuthModal';
 import UserMenu from './components/UserMenu';
 import './styles/App.css';
 import './styles/MapView.css';
-//hola
+import { useEffect } from 'react';
+import Axios from "axios";
+
 function App() {
   const [products, setProducts] = useState(['Producto 1', 'Producto 2']);
   const [newProduct, setNewProduct] = useState('');
   const [currentView, setCurrentView] = useState('list'); // 'list' o 'map'
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [user, setUser] = useState(null); // Estado de usuario
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+    // Verifica si ya hay sesión activa al cargar la app (ej. al volver de Google)
+    Axios.get('http://localhost:3001/auth/user', { withCredentials: true })
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => {
+      
+      });
+  }, []);
 
   const addProduct = () => {
     if (newProduct.trim() !== '') {
@@ -68,7 +82,7 @@ function App() {
               <h2 className="title">Agrega tus productos</h2>
               <p className="subtitle">Sigue este formato</p>
               
-              <ProductList 
+              <ProductList
                 products={products}
                 onRemoveProduct={removeProduct}
               />
@@ -85,6 +99,7 @@ function App() {
                 <button onClick={addProduct} className="add-button">
                   Agregar
                 </button>
+          
               </div>
               
               <GenerateListButton 

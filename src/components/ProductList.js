@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 
-const ProductList = ({ products, onRemoveProduct }) => {
+const ProductList = ({products, onRemoveProduct }) => {
     return (
     <div className="product-list">
         {products.map((product, index) => (
