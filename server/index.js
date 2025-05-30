@@ -32,7 +32,7 @@ app.use(express.json());
 
 
 const db = mysql.createPool(
- 'mysql://root:hmliTwBiMVzMzUzrGBFFATdnENafwqrj@switchyard.proxy.rlwy.net:58752/railway'
+ 'mysql://root:zemclwfpshngdBdvkpRaSnCjxlJRUwyz@nozomi.proxy.rlwy.net:10023/railway'
 );
 
 
@@ -116,6 +116,58 @@ app.get('/api/user', (req, res) => {
     res.json({ user: req.user });
   } else {
     res.status(401).json({ error: 'No autenticado' });
+  }
+});
+
+
+
+app.get("/productos/:id_usuario", async (req, res) => {
+  const { id_usuario } = req.params;
+
+  try {
+    const [rows] = await db.query(
+      "SELECT nombre FROM productos WHERE id_user = ?",
+      [id_usuario]
+    );
+
+    const productos = rows.map(row => ({ nombre: row.nombre }));
+    
+    res.json({ success: true, productos });
+  } catch (err) {
+    console.error("Error al obtener productos:", err);
+    res.status(500).json({ success: false, message: "Error del servidor" });
+  }
+});
+
+app.post('/productos/update', async (req, res) => {
+  const { id_usuario, productos } = req.body;
+  console.log(id_usuario)
+   console.log(productos)
+  const conn = await db.getConnection();
+  try {
+    await conn.beginTransaction();
+
+    // 1. Eliminar productos anteriores del usuario
+    await conn.query('DELETE FROM productos WHERE id_user = ?', [id_usuario]);
+
+    // 2. Insertar nueva lista de productos
+    for (const producto of productos) {
+   
+      await conn.query(
+        'INSERT INTO productos (nombre, id_user) VALUES (?, ?)',
+        [producto, id_usuario]
+      );
+    }
+
+    await conn.commit();
+    res.json({ success: true });
+
+  } catch (error) {
+    await conn.rollback();
+    console.error('Error al actualizar productos:', error);
+    res.status(500).json({ success: false, message: 'Error del servidor' });
+  } finally {
+    conn.release();
   }
 });
 

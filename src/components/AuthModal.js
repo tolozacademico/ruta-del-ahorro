@@ -27,6 +27,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }) => {
       } else {
         alert("Usuario y/o Contraseña incorrectas");
       }
+      
     } catch (error) {
       console.error("Error durante autenticación:", error);
       alert("Ocurrió un error durante el inicio de sesión.");
